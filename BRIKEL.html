@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MICHEAL & BRIKEL FOREVER</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);font-family:sans-serif;padding:20px}
+.card,.celebrate{background:white;padding:28px;border-radius:28px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.3);max-width:450px;width:100%}
+.celebrate{display:none}
+.main-img,.main-video{width:100%;border-radius:18px;border:3px solid #ff4d6d;max-height:400px;object-fit:cover;display:block}
+button{background:#ff4d6d;color:white;border:none;padding:14px 32px;border-radius:30px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:15px}
+#noBtn{background:#ddd;color:#333;margin-left:10px;transition:all 0.3s ease}
+.latin{font-family:Georgia,serif;font-style:italic;font-size:26px;color:#ff4d6d;margin:12px 0}
+.names{font-size:30px;font-weight:bold}
+#emojiPop{font-size:80px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:none;z-index:999}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="card" id="mainCard">
+<h1 style="color:#ff4d6d">Micheal ❤️ Brikel</h1>
+
+<video class="main-video" autoplay muted loop playsinline controls>
+  <source src="PIC.JPG/EMIO0505.MP4" type="video/mp4">
+</video>
+
+<p>Your smile is my favorite place to be.</p>
+
+<audio id="loveSong" autoplay loop>
+  <source src="song.mp3/Dave ft Tems – Raindance.mp3" type="audio/mpeg">
+</audio>
+
+<h2>Will u spend the rest of your life with me?</h2>
+<button onclick="sayYes()">YES, FOREVER ❤️</button>
+<button id="noBtn" onclick="moveNo()">No</button>
+</div>
+
+<div id="emojiPop">🤪</div>
+
+<div class="celebrate" id="celebrate">
+<h1>She Said YES!!!</h1>
+<img src="pic2.JPG/HZME2251.JPG" class="main-img">
+<div class="names">Micheal & Brikel</div>
+<div class="latin">Tu et Ego in Aeternum</div>
+<p><i>Me and You Forevermore</i></p>
+<p>Our forever starts now. - Micheal</p>
+<p style="font-size:40px">💍♾️💖</p>
+</div>
+
+<script>
+const song = document.getElementById('loveSong');
+song.volume = 0.8;
+
+// TRY TO PLAY IMMEDIATELY WHEN LINK OPENS
+window.addEventListener('load', () => {
+  song.play().catch(()=>{});
+});
+
+// IF BROWSER BLOCKED IT, PLAY ON FIRST TAP ANYWHERE
+function startMusic(){
+  song.play().catch(()=>{});
+  document.removeEventListener('click', startMusic);
+  document.removeEventListener('touchstart', startMusic);
+}
+document.addEventListener('click', startMusic);
+document.addEventListener('touchstart', startMusic);
+
+function sayYes(){
+  document.getElementById('mainCard').style.display='none';
+  document.getElementById('celebrate').style.display='block';
+  song.play();
+  setInterval(createHeart,80);
+}
+function createHeart(){
+  let e=document.createElement('div');
+  e.innerHTML=['❤️','💖','✨','💍'][Math.floor(Math.random()*4)];
+  e.style.position='fixed';e.style.left=Math.random()*100+'vw';
+  e.style.top='-20px';e.style.fontSize='24px';
+  e.style.animation='fall 4s linear';
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),4000)
+}
+function moveNo(){
+  let b=document.getElementById('noBtn');
+  let emoji = document.getElementById('emojiPop');
+  song.play(); // also ensures music is playing
+  emoji.style.display='block';
+  b.innerText='🤪 Nope!';
+  b.style.position='absolute';
+  b.style.left=Math.random()*70+'vw';
+  b.style.top=Math.random()*70+'vh';
+  setTimeout(()=>{ emoji.style.display='none'; }, 1500);
+}
+</script>
+</body>
+</html>
